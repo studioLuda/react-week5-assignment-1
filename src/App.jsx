@@ -1,28 +1,18 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 
-import { loadInitialData } from './actions';
-import RegionsContainer from './RegionsContainer';
-import CategoriesContainer from './CategoriesContainer';
-import RestaurantsContainer from './RestaurantsContainer';
-// 목표
-// 0. 지역, 분류 목록을 얻기
-// 1. 지역 선택
-// 2. 분류 선택
-// 3. 식당 목록
+import RestaurantsPage from './RestaurantsPage';
+import HomePage from './HomePage';
+import AboutPage from './AboutPage';
+import NotFoundPage from './NotFoundPage';
 
 export default function App() {
-  const dispatch = useDispatch();
+  // console.log(window.location.pathname);
+  const { location: { pathname } } = window;
 
-  useEffect(() => {
-    dispatch(loadInitialData());
-  }, []);
-
-  return (
-    <div>
-      <RegionsContainer />
-      <CategoriesContainer />
-      <RestaurantsContainer />
-    </div>
-  );
+  const MyComponent = {
+    '/': HomePage,
+    '/about': AboutPage,
+    '/restaurants': RestaurantsPage,
+  }[pathname] || NotFoundPage;
+  return (<MyComponent />);
 }

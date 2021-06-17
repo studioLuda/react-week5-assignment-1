@@ -1,15 +1,15 @@
 import { render } from '@testing-library/react';
 import { useSelector } from 'react-redux';
 
-import App from './App';
+import HomePage from './HomePage';
 
-describe('App', () => {
+describe('HomePage', () => {
   it('renders categories', () => {
     useSelector.mockImplementation((selector) => selector({
       regions: [],
       categories: [],
       restaurants: [],
     }));
-    render(<App />);
+    render(<HomePage />);
   });
 });
